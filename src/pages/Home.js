@@ -12,9 +12,8 @@ class Home extends React.Component {
       productList: [],
       categories: [],
     };
-  }
-  
-  this.categories = async () => {
+
+    this.categories = async () => {
       const categoriesList = await getCategories();
       this.setState({
         categories: categoriesList,
@@ -45,7 +44,7 @@ class Home extends React.Component {
     const { queryValue, showMessage, productList, categories } = this.state;
     return (
       <div>
-      <div>
+        <div>
           { categories.map((categorie) => (
             <div key={ categorie.name }>
               <input
