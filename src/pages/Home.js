@@ -38,14 +38,14 @@ class Home extends React.Component {
       this.setState({
         productList,
         showMessage: false,
-      }, () => console.log(productList));
+      });
     } else if (target.type === 'radio') {
       this.setState({ queryValue: target.id });
       const productList = await getProductsFromQuery(queryValue);
       this.setState({
         productList,
         showMessage: false,
-      }, () => console.log(productList));
+      });
     }
   }
 
@@ -54,16 +54,16 @@ class Home extends React.Component {
     return (
       <div>
         <div>
-          { categories.map((categorie) => (
-            <div key={ categorie.name }>
+          { categories.map((category) => (
+            <div key={ category.name }>
               <input
                 data-testid="category"
                 type="radio"
-                name="categorie"
-                id={ categorie.name }
+                name="category"
+                id={ category.name }
                 onClick={ this.handleClick }
               />
-              <label htmlFor="categorie">{categorie.name}</label>
+              <label htmlFor="categorie">{category.name}</label>
             </div>
           ))}
         </div>
