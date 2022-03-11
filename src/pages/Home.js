@@ -38,14 +38,14 @@ class Home extends React.Component {
       this.setState({
         productList,
         showMessage: false,
-      }, () => console.log(productList));
+      }, () => productList);
     } else if (target.type === 'radio') {
-      this.setState({ queryValue: target.id });
-      const productList = await getProductsFromQuery(queryValue);
+      const categoryName = target.id;
+      const productList = await getProductsFromQuery(categoryName);
       this.setState({
         productList,
         showMessage: false,
-      }, () => console.log(productList));
+      }, () => productList);
     }
   }
 
