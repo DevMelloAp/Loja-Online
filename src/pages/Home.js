@@ -31,13 +31,22 @@ class Home extends React.Component {
     });
   }
 
-  handleClick = async () => {
+  handleClick = async ({ target }) => {
     const { queryValue } = this.state;
-    const productList = await getProductsFromQuery(queryValue);
-    this.setState({
-      productList,
-      showMessage: false,
-    }, () => console.log(productList));
+    if (target.type === 'button') {
+      const productList = await getProductsFromQuery(queryValue);
+      this.setState({
+        productList,
+        showMessage: false,
+      }, () => console.log(productList));
+    } else if (target.type === 'radio') {
+      this.setState({ queryValue: target.id });
+      const productList = await getProductsFromQuery(queryValue);
+      this.setState({
+        productList,
+        showMessage: false,
+      }, () => console.log(productList));
+    }
   }
 
   render() {
@@ -51,6 +60,8 @@ class Home extends React.Component {
                 data-testid="category"
                 type="radio"
                 name="categorie"
+                id={ categorie.name }
+                onClick={ this.handleClick }
               />
               <label htmlFor="categorie">{categorie.name}</label>
             </div>
