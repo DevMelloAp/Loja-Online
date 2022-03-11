@@ -40,8 +40,8 @@ class Home extends React.Component {
         showMessage: false,
       });
     } else if (target.type === 'radio') {
-      this.setState({ queryValue: target.id });
-      const productList = await getProductsFromQuery(queryValue);
+      const categoryName = target.id;
+      const productList = await getProductsFromQuery(categoryName);
       this.setState({
         productList,
         showMessage: false,
