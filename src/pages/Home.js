@@ -50,7 +50,7 @@ class Home extends React.Component {
               <input
                 data-testid="category"
                 type="radio"
-                id="categorie"
+                name="categorie"
               />
               <label htmlFor="categorie">{categorie.name}</label>
             </div>
