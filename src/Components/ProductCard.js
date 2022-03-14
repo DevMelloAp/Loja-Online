@@ -22,7 +22,7 @@ class ProductCard extends React.Component {
         <img src={ product.thumbnail } alt="" />
         {showQuantity && (
           <p data-testid="shopping-cart-product-quantity">
-            Quantidade:
+            Quantidade
             {this.getQuantity(products, product.id)}
           </p>)}
         <button
