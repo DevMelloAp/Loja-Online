@@ -11,6 +11,7 @@ class Home extends React.Component {
       showMessage: true,
       productList: [],
       categories: [],
+      addedItens: [],
     };
 
     this.categories = async () => {
@@ -23,6 +24,12 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.categories();
+  }
+
+  addItem = (product) => {
+    this.setState((prevState) => ({
+      addedItens: [...prevState.addedItens, product],
+    }));
   }
 
   handleChange = ({ target }) => {
@@ -50,7 +57,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { queryValue, showMessage, productList, categories } = this.state;
+    const { queryValue, showMessage, productList, categories, addedItens } = this.state;
     return (
       <div>
         <div>
@@ -63,7 +70,7 @@ class Home extends React.Component {
                 id={ category.name }
                 onClick={ this.handleClick }
               />
-              <label htmlFor="categorie">{category.name}</label>
+              <label htmlFor="category">{category.name}</label>
             </div>
           ))}
         </div>
@@ -80,13 +87,24 @@ class Home extends React.Component {
         >
           Pesquisar
         </button>
-        <Link data-testid="shopping-cart-button" to="/shopcar">Carrinhos de Compras</Link>
+        <Link
+          data-testid="shopping-cart-button"
+          to={ {
+            pathname: '/shopcar',
+            state: addedItens } }
+        >
+          Carrinhos de Compras
+        </Link>
         {showMessage
           ? (
             <h1 data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.
             </h1>)
-          : <ProductList productList={ productList } />}
+          : (
+            <ProductList
+              productList={ productList }
+              addItem={ this.addItem }
+            />)}
       </div>
     );
   }
