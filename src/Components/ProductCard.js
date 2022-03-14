@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class ProductCard extends React.Component {
   getQuantity = (array, id) => {
@@ -19,7 +20,6 @@ class ProductCard extends React.Component {
       <section data-testid={ itemId }>
         <h1>{ product.title }</h1>
         <p>{ product.price }</p>
-        <img src={ product.thumbnail } alt="" />
         {showQuantity && (
           <p data-testid="shopping-cart-product-quantity">
             Quantidade:
@@ -32,6 +32,18 @@ class ProductCard extends React.Component {
         >
           {buttonText}
         </button>
+        <Link
+          data-testid="product-detail-link"
+          to={ {
+            pathname: '/productDetail',
+            state: product } }
+        >
+          <img
+            src={ product.thumbnail }
+            alt=""
+          />
+        </Link>
+
       </section>);
   }
 }
