@@ -21,10 +21,14 @@ class ProductCard extends React.Component {
         <p>{ product.price }</p>
         <img src={ product.thumbnail } alt="" />
         {showQuantity && (
-          <p data-testid="shopping-cart-product-quantity">
-            Quantidade
-            {this.getQuantity(products, product.id)}
-          </p>)}
+          <div>
+            <input type="button" data-testid="product-decrease-quantity" value="-" />
+            <p data-testid="shopping-cart-product-quantity">
+              {this.getQuantity(products, product.id)}
+            </p>
+            <input type="button" data-testid="product-increase-quantity" value="+" />
+          </div>
+          )}
         <button
           type="button"
           data-testid={ buttonId }
