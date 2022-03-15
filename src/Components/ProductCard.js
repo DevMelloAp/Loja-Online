@@ -47,7 +47,7 @@ class ProductCard extends React.Component {
               type="button"
               id="subtraction"
               data-testid="product-decrease-quantity"
-              onClick={ () => this.quantitySubtraction() }
+              onClick={ this.quantitySubtraction }
               value="-"
             />
             <p id={ product.id } data-testid="shopping-cart-product-quantity">
@@ -57,7 +57,7 @@ class ProductCard extends React.Component {
               type="button"
               id="sum"
               data-testid="product-increase-quantity"
-              onClick={ () => this.quantitySum() }
+              onClick={ this.quantitySum }
               value="+"
             />
           </div>
