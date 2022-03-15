@@ -15,22 +15,22 @@ class ProductCard extends React.Component {
   quantitySubtraction = () => {
     const { products, product } = this.props;
     const checkId = (element) => element.id === product.id;
-    let quantityParagraph = document.querySelector(`#${product.id}`);
+    const quantityParagraph = document.querySelector(`#${product.id}`);
     const itemIdexPosition = products.findIndex(checkId);
     const quantity = parseFloat(quantityParagraph.innerHTML);
-    if(quantity > 1) {
+    if (quantity > 1) {
       products.splice(itemIdexPosition, 1);
-    }    
-    let quantityProduct = this.getQuantity(products, product.id);    
-    quantityParagraph.innerHTML = quantityProduct;  
+    }
+    const quantityProduct = this.getQuantity(products, product.id);
+    quantityParagraph.innerHTML = quantityProduct;
   };
 
   quantitySum = () => {
     const { products, product } = this.props;
     products.push(product);
-    let quantityParagraph = document.querySelector(`#${product.id}`);
-    let quantityProduct = this.getQuantity(products, product.id);    
-    quantityParagraph.innerHTML = quantityProduct; 
+    const quantityParagraph = document.querySelector(`#${product.id}`);
+    const quantityProduct = this.getQuantity(products, product.id);
+    quantityParagraph.innerHTML = quantityProduct;
   }
 
   render() {
@@ -43,23 +43,25 @@ class ProductCard extends React.Component {
         <img src={ product.thumbnail } alt="" />
         {showQuantity && (
           <div>
-            <input 
-              type="button" 
-              id="subtraction" 
-              data-testid="product-decrease-quantity" 
+            <input
+              type="button"
+              id="subtraction"
+              data-testid="product-decrease-quantity"
               onClick={ () => this.quantitySubtraction() }
-              value="-" />
-            <p id={product.id} data-testid="shopping-cart-product-quantity">
-            {this.getQuantity(products, product.id)}
+              value="-"
+            />
+            <p id={ product.id } data-testid="shopping-cart-product-quantity">
+              {this.getQuantity(products, product.id)}
             </p>
-            <input 
+            <input
               type="button"
               id="sum"
               data-testid="product-increase-quantity"
               onClick={ () => this.quantitySum() }
-              value="+" />
+              value="+"
+            />
           </div>
-          )}
+        )}
         <button
           type="button"
           data-testid={ buttonId }
