@@ -13,6 +13,27 @@ class ProductCard extends React.Component {
     return count;
   }
 
+  quantitySubtraction = () => {
+    const { products, product } = this.props;
+    const checkId = (element) => element.id === product.id;
+    const quantityParagraph = document.querySelector(`#${product.id}`);
+    const itemIdexPosition = products.findIndex(checkId);
+    const quantity = parseFloat(quantityParagraph.innerHTML);
+    if (quantity > 1) {
+      products.splice(itemIdexPosition, 1);
+    }
+    const quantityProduct = this.getQuantity(products, product.id);
+    quantityParagraph.innerHTML = quantityProduct;
+  };
+
+  quantitySum = () => {
+    const { products, product } = this.props;
+    products.push(product);
+    const quantityParagraph = document.querySelector(`#${product.id}`);
+    const quantityProduct = this.getQuantity(products, product.id);
+    quantityParagraph.innerHTML = quantityProduct;
+  }
+
   render() {
     const { product, onClick,
       buttonText, buttonId, itemId, products, showQuantity } = this.props;
@@ -21,10 +42,26 @@ class ProductCard extends React.Component {
         <h1>{ product.title }</h1>
         <p>{ product.price }</p>
         {showQuantity && (
-          <p data-testid="shopping-cart-product-quantity">
-            Quantidade:
-            {this.getQuantity(products, product.id)}
-          </p>)}
+          <div>
+            <input
+              type="button"
+              id="subtraction"
+              data-testid="product-decrease-quantity"
+              onClick={ this.quantitySubtraction }
+              value="-"
+            />
+            <p id={ product.id } data-testid="shopping-cart-product-quantity">
+              {this.getQuantity(products, product.id)}
+            </p>
+            <input
+              type="button"
+              id="sum"
+              data-testid="product-increase-quantity"
+              onClick={ this.quantitySum }
+              value="+"
+            />
+          </div>
+        )}
         <button
           type="button"
           data-testid={ buttonId }
