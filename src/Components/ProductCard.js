@@ -12,6 +12,27 @@ class ProductCard extends React.Component {
     return count;
   }
 
+  quantitySubtraction = () => {
+    const { products, product } = this.props;
+    const checkId = (element) => element.id === product.id;
+    let quantityParagraph = document.querySelector(`#${product.id}`);
+    const itemIdexPosition = products.findIndex(checkId);
+    const quantity = parseFloat(quantityParagraph.innerHTML);
+    if(quantity > 1) {
+      products.splice(itemIdexPosition, 1);
+    }    
+    let quantityProduct = this.getQuantity(products, product.id);    
+    quantityParagraph.innerHTML = quantityProduct;  
+  };
+
+  quantitySum = () => {
+    const { products, product } = this.props;
+    products.push(product);
+    let quantityParagraph = document.querySelector(`#${product.id}`);
+    let quantityProduct = this.getQuantity(products, product.id);    
+    quantityParagraph.innerHTML = quantityProduct; 
+  }
+
   render() {
     const { product, onClick,
       buttonText, buttonId, itemId, products, showQuantity } = this.props;
@@ -22,11 +43,21 @@ class ProductCard extends React.Component {
         <img src={ product.thumbnail } alt="" />
         {showQuantity && (
           <div>
-            <input type="button" data-testid="product-decrease-quantity" value="-" />
-            <p data-testid="shopping-cart-product-quantity">
-              {this.getQuantity(products, product.id)}
+            <input 
+              type="button" 
+              id="subtraction" 
+              data-testid="product-decrease-quantity" 
+              onClick={ () => this.quantitySubtraction() }
+              value="-" />
+            <p id={product.id} data-testid="shopping-cart-product-quantity">
+            {this.getQuantity(products, product.id)}
             </p>
-            <input type="button" data-testid="product-increase-quantity" value="+" />
+            <input 
+              type="button"
+              id="sum"
+              data-testid="product-increase-quantity"
+              onClick={ () => this.quantitySum() }
+              value="+" />
           </div>
           )}
         <button
