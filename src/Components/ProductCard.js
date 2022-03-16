@@ -36,7 +36,8 @@ class ProductCard extends React.Component {
 
   render() {
     const { product, onClick,
-      buttonText, buttonId, itemId, products, showQuantity } = this.props;
+      buttonText,
+      buttonId, itemId, products, showQuantity } = this.props;
     return (
       <section data-testid={ itemId }>
         <h1>{ product.title }</h1>
@@ -98,6 +99,7 @@ ProductCard.propTypes = {
   itemId: PropTypes.string.isRequired,
   showQuantity: PropTypes.bool.isRequired,
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // addedItens: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductCard;
