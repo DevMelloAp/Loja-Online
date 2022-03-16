@@ -27,6 +27,14 @@ class ShopCar extends React.Component {
               />))
           )}
         <Link to="/">Voltar</Link>
+        <Link
+          to={ {
+            pathname: '/checkout',
+            state: addedProducts } }
+        >
+          <button type="submit" data-testid="checkout-products">Finalizar Compra</button>
+        </Link>
+
       </div>
     );
   }
