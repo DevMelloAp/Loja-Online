@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductList from '../Components/ProductList';
 import { getProductsFromQuery, getCategories } from '../services/api';
+import { addItemLocal, getSavedItens } from '../services/saveCart';
 
 class Home extends React.Component {
   constructor() {
@@ -11,7 +12,7 @@ class Home extends React.Component {
       showMessage: true,
       productList: [],
       categories: [],
-      addedItens: [],
+      addedItens: getSavedItens(),
     };
 
     this.categories = async () => {
@@ -27,9 +28,13 @@ class Home extends React.Component {
   }
 
   addItem = (product) => {
-    this.setState((prevState) => ({
-      addedItens: [...prevState.addedItens, product],
-    }));
+    addItemLocal(product);
+    this.setState({
+      addedItens: getSavedItens(),
+    });
+    // this.setState((prevState) => ({
+    //   addedItens: [...prevState.addedItens, product],
+    // }));
   }
 
   handleChange = ({ target }) => {
@@ -87,14 +92,15 @@ class Home extends React.Component {
         >
           Pesquisar
         </button>
-        <Link
-          data-testid="shopping-cart-button"
-          to={ {
-            pathname: '/shopcar',
-            state: addedItens } }
-        >
-          Carrinhos de Compras
-        </Link>
+        <div>
+          <Link
+            data-testid="shopping-cart-button"
+            to="/shopcar"
+          >
+            Carrinhos de Compras
+          </Link>
+          <p data-testid="shopping-cart-size">{ addedItens.length }</p>
+        </div>
         {showMessage
           ? (
             <h1 data-testid="home-initial-message">
@@ -104,6 +110,7 @@ class Home extends React.Component {
             <ProductList
               productList={ productList }
               addItem={ this.addItem }
+              addedItens={ addedItens }
             />)}
       </div>
     );
