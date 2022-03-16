@@ -13,3 +13,8 @@ export const addItemLocal = (item) => {
   const savedItens = getSavedItens();
   saveItens([...savedItens, item]);
 };
+
+export const removeItem = (item) => {
+  const savedItens = getSavedItens();
+  saveItens(savedItens.filter((p) => p.id !== item.id));
+};

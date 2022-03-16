@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import ProductCard from '../Components/ProductCard';
-import { getSavedItens } from '../services/saveCart';
+import { getSavedItens, removeItem } from '../services/saveCart';
 
 class ShopCar extends React.Component {
   render() {
@@ -18,7 +18,7 @@ class ShopCar extends React.Component {
               <ProductCard
                 product={ product }
                 key={ product.id }
-                onClick={ () => {} }
+                onClick={ removeItem }
                 buttonText="Remover Produto"
                 buttonId=""
                 itemId="shopping-cart-product-name"
