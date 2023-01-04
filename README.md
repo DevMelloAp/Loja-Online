@@ -13,7 +13,7 @@ Integrantes do grupo:
 - Matheus Jessé do Nascimento
 
 Habilidades desenvolvidas:
-+++++++++++++++++++++++++
+=========================
 
 - Entender o que são Métodos Ágeis
 - Entender o que é Kanban
