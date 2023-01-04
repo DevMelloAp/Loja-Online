@@ -7,8 +7,8 @@ Esse projeto foi realizado em grupo durante o curso de Desenvolvimento Web na Tr
 
 Integrantes do grupo:
 ====================
-- Emerson Aparecido de Melo
 - Catherine Teles
+- Emerson Aparecido de Melo
 - Luis Fernando Perozini Borba
 - Matheus Jessé do Nascimento
 
